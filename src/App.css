@@ -1,0 +1,32 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 4% 3%;
+  width: 100%;
+}
+
+.form_wrapper {
+  width: 50%;
+}
+
+.header_wrapper{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 2%;
+}
+.header_wrapper > a {
+  font-size: 18px;
+  text-decoration: none;
+  color: blue;
+  font-weight: 500;
+}
+
+.header_wrapper > a:focus,
+.header_wrapper > a:active {
+  text-decoration: underline;
+  color: red;
+}
