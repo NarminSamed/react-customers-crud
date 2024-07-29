@@ -1,12 +1,18 @@
+import React from "react";
+import { Menu } from "antd";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const AppHeader: React.FC = () => {
   return (
-    <div className="header_wrapper">
-      <h1>Logo</h1>
-      <Link to="/addcustomer">Add Customer</Link>
-    </div>
+    <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
+      <Menu.Item key="1">
+        <Link to="/">Customer List</Link>
+      </Menu.Item>
+      <Menu.Item key="2">
+        <Link to="/addcustomer">Add Customer</Link>
+      </Menu.Item>
+    </Menu>
   );
 };
 
-export default Header;
+export default AppHeader;

@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Table, notification, Button } from "antd";
+import { Table, notification, Button, message, Popconfirm } from "antd";
 import axios from "axios";
 
 interface Address {
-  street: string;
   city: string;
-  region: string;
-  postalCode: string;
-  country: string;
 }
 
 const CustomerList: React.FC = () => {
@@ -45,7 +41,14 @@ const CustomerList: React.FC = () => {
         });
       });
   };
+  const confirm = (id: string) => {
+    handleDelete(id);
+    message.success("Click on Yes");
+  };
 
+  const cancel = () => {
+    message.error("Click on No");
+  };
   const columns = [
     {
       title: "ID",
@@ -71,16 +74,22 @@ const CustomerList: React.FC = () => {
       title: "Address",
       dataIndex: "address",
       key: "address",
-      render: (address: Address) =>
-        `${address.street}, ${address.city}, ${address.region}, ${address.postalCode}, ${address.country}`,
+      render: (address: Address) => address?.city,
     },
     {
       title: "Actions",
       key: "actions",
       render: (text: any, record: Customer) => (
-        <Button type="primary" danger onClick={() => handleDelete(record.id)}>
-          Delete
-        </Button>
+        <Popconfirm
+          title="Delete the task"
+          description="Are you sure to delete this task?"
+          onConfirm={() => confirm(record.id)}
+          onCancel={cancel}
+          okText="Yes"
+          cancelText="No"
+        >
+          <Button danger>Delete</Button>
+        </Popconfirm>
       ),
     },
   ];
